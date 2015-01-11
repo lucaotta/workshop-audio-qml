@@ -67,3 +67,6 @@ macx {
         QMAKE_LFLAGS += -Wl,--rpath=\\\$\$ORIGIN
     }
 }
+
+RESOURCES += \
+    spectrum.qrc
