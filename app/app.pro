@@ -14,7 +14,8 @@ SOURCES  += main.cpp \
             spectrumanalyser.cpp \
             tonegenerator.cpp \
             utils.cpp \
-            wavfile.cpp
+            wavfile.cpp \
+    spectrummodel.cpp
 
 HEADERS  += engine.h \
             frequencyspectrum.h \
@@ -22,7 +23,8 @@ HEADERS  += engine.h \
             spectrumanalyser.h \
             tonegenerator.h \
             utils.h \
-            wavfile.h
+            wavfile.h \
+    spectrummodel.h
 
 fftreal_dir = ../3rdparty/fftreal
 
