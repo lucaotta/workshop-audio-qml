@@ -44,10 +44,12 @@
 #include <QDebug>
 #include <QAudioDeviceInfo>
 #include <QTimer>
+#include <QtQml>
 
 #include "spectrum.h"
 #include "tonegenerator.h"
 #include "engine.h"
+#include "spectrummodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -60,5 +62,14 @@ int main(int argc, char *argv[])
     audio_engine.setAudioOutputDevice(audio_engine.availableAudioOutputDevices().at(0));
     audio_engine.generateSweptTone(0.8);
 
+
+    SpectrumModel model;
+    QObject::connect(&audio_engine, SIGNAL(spectrumChanged(qint64,qint64,FrequencySpectrum)),
+            &model, SLOT(spectrumChanged(qint64,qint64,FrequencySpectrum)));
+    qmlRegisterUncreatableType<SpectrumModel>("MyApp", 1, 0, "SpectrumModel",
+                                              "Can't create SpectrumModel");
+
+    engine.rootContext()->setContextProperty("spectrumModel", &model);
+    QTimer::singleShot(1000, &audio_engine, SLOT(startPlayback()));
     return app.exec();
 }

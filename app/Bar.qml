@@ -19,7 +19,7 @@ Rectangle {
         anchors.leftMargin: 3
 
         Behavior on width {
-            NumberAnimation { duration: 250; easing.type: Easing.Linear }
+            NumberAnimation { duration: 100; easing.type: Easing.Linear }
         }
     }
 }
